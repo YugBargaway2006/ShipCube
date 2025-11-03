@@ -2,6 +2,9 @@
 # Python Chatbot Project .gitignore
 # ===================================
 
+# GITIgnore file
+.gitignore
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
