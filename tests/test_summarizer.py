@@ -138,15 +138,3 @@ def test_entity_highlighting_no_entities_provided():
     assert result == expected
 
 
-
-def main():
-    # Tesing summarizer
-
-    response = "The standard procedure for tracking an order, such as order SH-123, involves using the tracking portal on our main website. For order SH-123, the last update shows it departed the Oakland port on November 1st. The current estimated time of arrival is November 5th. Please note that this date is an estimate and can be subject to customs delays. If you have further questions about SH-123 or any other shipment, please contact your account representative."
-
-    summary = get_n_tokens_summary(response)
-
-    print(summary)
-
-
-main()
