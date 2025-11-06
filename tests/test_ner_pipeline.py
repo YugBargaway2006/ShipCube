@@ -59,7 +59,7 @@ def test_hybrid_model_logic(nlp):
     # PII redaction happens *before* this model is called.
     test_prompt = (
         "Hi, my name is John Doe, my order is EU98765, is it "
-        "going from Berlin to Warsaw next week?"
+        "going from Berlin to Warsaw next month?"
     )
     
     doc = nlp(test_prompt)
@@ -73,7 +73,7 @@ def test_hybrid_model_logic(nlp):
     # Check that our custom-trained ML entities were found
     # (Note: "Berlin" and "Warsaw" would be GPE or ROUTE
     # and "next week" would be DATE, assuming they were in your training data)
-    assert ("next week", "DATE") in entities
+    assert ("next month", "DATE") in entities
     assert ("Berlin", "GPE") in entities  # Or 'ROUTE' if you trained it that way
     assert ("Warsaw", "GPE") in entities  # Or 'ROUTE'
     
