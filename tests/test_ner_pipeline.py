@@ -3,6 +3,8 @@
 import pytest
 import spacy
 from ml.ner_entity.nlp.build_pipeline import create_pii_redactor
+from ml.pii_redactor import redact_prompt
+
 
 @pytest.fixture(scope="session")
 def nlp():
@@ -12,14 +14,7 @@ def nlp():
         nlp = spacy.load(model_path)
         return nlp
     except Exception as e:
-        pytest.fail(f"❌ Failed to load NLP model from {model_path}: {e}")
-
-
-import pytest
-import spacy
-
-# Make sure your 'ml/pii_redactor.py' file is accessible
-from ml.pii_redactor import redact_prompt
+        pytest.fail(f"Failed to load NLP model from {model_path}: {e}")
 
 
 # --- Test 1: PII Redaction Unit Test ---
@@ -74,8 +69,8 @@ def test_hybrid_model_logic(nlp):
     # (Note: "Berlin" and "Warsaw" would be GPE or ROUTE
     # and "next week" would be DATE, assuming they were in your training data)
     assert ("next month", "DATE") in entities
-    assert ("Berlin", "GPE") in entities  # Or 'ROUTE' if you trained it that way
-    assert ("Warsaw", "GPE") in entities  # Or 'ROUTE'
+    assert ("Berlin", "GPE") in entities  
+    assert ("Warsaw", "GPE") in entities 
     
     # Check that the base model's entity (from Presidio/spaCy) is still there
     assert ("John Doe", "PERSON") in entities
@@ -87,7 +82,7 @@ def test_pipeline_loads(nlp):
     assert "ner" in component_names, "NER component missing"
     assert "entity_ruler" in component_names, "EntityRuler missing"
     assert any("pii" in name for name in component_names), "PII redactor missing"
-    print(f"✅ Loaded pipeline with components: {component_names}")
+    print(f"Loaded pipeline with components: {component_names}")
 
 
 def test_order_id_detection(nlp):
@@ -96,7 +91,7 @@ def test_order_id_detection(nlp):
     order_ids = [ent.text for ent in doc.ents if ent.label_ == "ORDER_ID"]
     assert "SC12345" in order_ids, "SC12345 not detected as ORDER_ID"
     assert "EU54321" in order_ids, "EU54321 not detected as ORDER_ID"
-    print(f"✅ Detected order IDs: {order_ids}")
+    print(f"Detected order IDs: {order_ids}")
 
 
 def test_pii_redaction(nlp):
@@ -105,7 +100,7 @@ def test_pii_redaction(nlp):
     doc = nlp(text)
     assert "<PHONE>" in doc.text or "5555" not in doc.text, \
         "PII redactor did not anonymize phone numbers"
-    print("✅ PII successfully redacted.")
+    print("PII successfully redacted.")
 
 
 def test_combined_entities(nlp):
@@ -118,4 +113,4 @@ def test_combined_entities(nlp):
     assert "ORDER_ID" in labels, "ORDER_ID not detected in mixed input"
     assert any(l in labels for l in ["PERSON", "PHONE_NUMBER"]), \
         "PII entity missing in mixed input"
-    print(f"✅ Combined entity detection passed: {entities}")
+    print(f"Combined entity detection passed: {entities}")

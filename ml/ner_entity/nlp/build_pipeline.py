@@ -23,15 +23,14 @@ def create_nlp_pipeline():
     Creates the full hybrid spaCy pipeline.
     Combines rule-based ORDER_ID detection with transformer NER.
     """
-    # 1. Start with the transformer model
+    # transformer model
     nlp = spacy.load("en_core_web_trf")
     nlp.add_pipe("pii_redactor", first=True)
     
-    # 2. Add an EntityRuler to catch ORDER_ID patterns before the NER
+    # Added an EntityRuler to catch ORDER_ID patterns before the NER
     ruler = nlp.add_pipe("entity_ruler", before="ner", config={"overwrite_ents": True})
     
-    # 3. Define regex patterns for order IDs
-    # Example: SC12345, EU67890, etc.
+    # Define regex patterns for order IDs
     patterns = [
         {
             "label": "ORDER_ID",
@@ -42,14 +41,10 @@ def create_nlp_pipeline():
         }
     ]
     
-    # 4. Add the patterns to the ruler
     ruler.add_patterns(patterns)
-    
-    # 5. Return the configured NLP pipeline
     return nlp
 
 
-# Example usage:
 if __name__ == "__main__":
     nlp = create_nlp_pipeline()
     text = "Where is my order SC12345 going? I also track EU54321."
