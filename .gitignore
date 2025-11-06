@@ -109,3 +109,8 @@ checkpoints/
 runs/
 wandb/
 tensorboard/
+
+
+# Ignore the entire final_hybrid_pipeline directory
+ml/ner_entity/models/final_hybrid_pipeline/
+
