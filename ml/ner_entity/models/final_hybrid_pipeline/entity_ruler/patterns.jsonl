@@ -1,1 +1,0 @@
-{"label":"ORDER_ID","pattern":[{"TEXT":{"REGEX":"^(SC|EU)\\d{5}$"}}],"id":"order_id_pattern"}
