@@ -1,1 +1,3 @@
 # ShipCube
+
+## Setup POSTGRESQL

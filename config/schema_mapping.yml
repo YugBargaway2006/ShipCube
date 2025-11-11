@@ -1,0 +1,229 @@
+# config/schema_mapping.yml
+# Defines the mapping from the Excel source file (5_Dog Is Human Nov - 24.xlsx)
+# to the PostgreSQL target tables
+
+tracking_export:
+  source_file_pattern: "5_Dog Is Human Nov - 24.xlsx"
+  sheet_name: "Export"
+  target_table: "tracking"
+  primary_key: "order_id"
+
+  columns:
+    - source: "User ID"
+      target: "user_id"
+      dtype: "int"
+
+    - source: "Merchant Name"
+      target: "merchant_name"
+      dtype: "str"
+
+    - source: "CustomerName"
+      target: "customer_name"
+      dtype: "str"
+
+    - source: "Order ID"
+      target: "order_id"
+      dtype: "int"
+
+    - source: "Transaction Status"
+      target: "transaction_status"
+      dtype: "str"
+
+    - source: "Transaction Type"
+      target: "transaction_type"
+      dtype: "str"
+
+    - source: "Invoice Number"
+      target: "invoice_number"
+      dtype: "int"
+
+    - source: "Transaction Date (UTC)"
+      target: "transaction_date"
+      dtype: "datetime"
+
+    - source: "Store OrderID"
+      target: "store_order_id"
+      dtype: "int"
+
+    - source: "Tracking ID"
+      target: "tracking_id"
+      dtype: "str"
+
+    - source: "Fulfillment without Surcharge"
+      target: "fulfillment_without_surcharge"
+      dtype: "numeric"
+
+    - source: "Surcharge Applied"
+      target: "surcharge_applied"
+      dtype: "numeric"
+
+    - source: "Invoice"
+      target: "invoice_amount"
+      dtype: "numeric"
+
+    - source: "WMS Fuel Surcharge"
+      target: "wms_fuel_surcharge"
+      dtype: "numeric"
+
+    - source: "Delivery Area Surcharge"
+      target: "delivery_area_surcharge"
+      dtype: "numeric"
+
+    - source: "Address Correction"
+      target: "address_correction"
+      dtype: "int"
+
+    - source: "Insurance Amount"
+      target: "insurance_amount"
+      dtype: "numeric"
+
+    - source: "Final Invoice Amt"
+      target: "final_invoice_amt"
+      dtype: "numeric"
+
+    - source: "Products Sold"
+      target: "products_sold"
+      dtype: "str"
+
+    - source: "Total Quantity"
+      target: "total_quantity"
+      dtype: "int"
+
+    - source: "Ship Option ID"
+      target: "ship_option_id"
+      dtype: "int"
+
+    - source: "Carrier"
+      target: "carrier"
+      dtype: "str"
+
+    - source: "Carrier Service"
+      target: "carrier_service"
+      dtype: "str"
+
+    - source: "Zone Used"
+      target: "zone_used"
+      dtype: "str"
+
+    - source: "Actual Weight (Oz)"
+      target: "actual_weight_oz"
+      dtype: "numeric"
+
+    - source: "Dim Weight(Oz)"
+      target: "dim_weight_oz"
+      dtype: "numeric"
+
+    - source: "Billable Weight(Oz)"
+      target: "billable_weight_oz"
+      dtype: "numeric"
+
+    - source: "Length"
+      target: "length"
+      dtype: "numeric"
+
+    - source: "Width"
+      target: "width"
+      dtype: "numeric"
+
+    - source: "Height"
+      target: "height"
+      dtype: "numeric"
+
+    - source: "Zip Code"
+      target: "zip_code"
+      dtype: "str"
+
+    - source: "City"
+      target: "city"
+      dtype: "str"
+
+    - source: "Destination Country"
+      target: "destination_country"
+      dtype: "str"
+
+    - source: "Order Insert Timestamp"
+      target: "order_insert_timestamp"
+      dtype: "datetime"
+
+    - source: "Label Generation Timestamp"
+      target: "label_generation_timestamp"
+      dtype: "datetime"
+
+    - source: "FC Name"
+      target: "fc_name"
+      dtype: "str"
+
+    - source: "Order Category"
+      target: "order_category"
+      dtype: "str"
+
+    - source: "Final Invoice Amt(Added 50 Cents)"
+      target: "final_invoice_amt_added_50c"
+      dtype: "numeric"
+
+
+customer_export:
+  source_file_pattern: "all_clients.csv"
+  target_table: "customers"
+  primary_key: "customer_id"
+
+  columns:
+    - source: "ClientName"
+      target: "customer_name"
+      dtype: "str"
+
+    - source: "Email"
+      target: "contact_email"
+      dtype: "str"
+
+    - source: "Tier"
+      target: "account_tier"
+      dtype: "category"
+
+
+rate_table_export:
+  source_file_pattern: "rate_data.csv"
+  target_table: "rate_table"
+  primary_key: "route_id"
+
+  columns:
+    - source: "RouteID"
+      target: "route_id"
+      dtype: "uuid"
+
+    - source: "Origin"
+      target: "origin"
+      dtype: "str"
+
+    - source: "Destination"
+      target: "destination"
+      dtype: "str"
+
+    - source: "ProductID"
+      target: "product_id"
+      dtype: "str"
+
+    - source: "EffectiveDate"
+      target: "effective_date"
+      dtype: "date"
+
+    - source: "BaseRate"
+      target: "base_rate"
+      dtype: "numeric"
+
+    - source: "SurchargeType"
+      target: "surcharge_type"
+      dtype: "str"
+
+    - source: "SurchargeValue"
+      target: "surcharge_value"
+      dtype: "numeric"
+
+    - source: "Currency"
+      target: "currency"
+      dtype: "str"
+
+    - source: "LastUpdated"
+      target: "last_updated"
+      dtype: "datetime"
+

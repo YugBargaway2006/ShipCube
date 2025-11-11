@@ -9,7 +9,7 @@ from sqlalchemy import create_engine
 
 DB_CONN_STRING = "postgresql://postgres:postgres@localhost:5432/customerdb"
 
-SOURCE_CSV_FILE = "../data/backend/src/ingest_pipeline/5_Dog Is Human Nov - 24.csv"
+SOURCE_CSV_FILE = "backend/src/ingest_pipeline/5_Dog Is Human Nov - 24.csv"
 TARGET_TABLE_NAME = "tracking"
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
